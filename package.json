@@ -7,8 +7,9 @@
     "name": ""
   },
   "scripts": {
-    "start": "webpack-dev-server --content-base dist/ --hot --inline --port 2000 --open",
-    "build": "webpack -p"
+    "start": "webpack-dev-server --mode development --content-base dist/ --port 2000 ",
+    "build": "webpack -p --mode production",
+    "watch": "webpack --mode development --watch"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -17,10 +18,11 @@
     "babel-eslint": "latest",
     "babel-loader": "^8.0.4",
     "babel-preset-env": "latest",
+    "copy-webpack-plugin": "^4.6.0",
     "css-loader": "latest",
     "eslint": "latest",
     "file-loader": "latest",
-    "html-webpack-plugin": "latest",
+    "html-webpack-plugin": "^3.2.0",
     "style-loader": "latest",
     "url-loader": "latest",
     "webpack": "^4.28.3",
@@ -28,7 +30,9 @@
     "webpack-dev-server": "latest"
   },
   "dependencies": {
+    "aframe": "^0.8.2",
     "cannon": "github:schteppe/cannon.js",
-    "three": "latest"
+    "three": "latest",
+    "three-obj-mtl-loader": "^1.0.3"
   }
 }

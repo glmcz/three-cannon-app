@@ -1,6 +1,7 @@
 var path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 module.exports = {
   stats: {
     colors: true
@@ -10,7 +11,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: '[name].bundle.js'
+    filename: 'index.js'
   },
   module: {
     rules: [
@@ -29,7 +30,7 @@ module.exports = {
         use: ['style-loader', 'css-loader']
       },
       {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|obj|mtl)$/,
         loader: 'url-loader',
         options: {
           limit: 8192
@@ -38,9 +39,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Three.js App',
-      filename: 'index.html'
-    })
+      new HtmlWebpackPlugin({
+          inject: false,
+          hash: true,
+          template: './src/index.html',
+          filename: 'index.html'
+      }),
+      new CopyWebpackPlugin([
+          {from:'src/',to:''}
+      ])
   ]
 };
