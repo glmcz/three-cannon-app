@@ -33,7 +33,7 @@ module.exports = {
         test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2|obj|mtl)$/,
         loader: 'url-loader',
         options: {
-          limit: 8192
+          limit: 19192
         }
       }
     ]
@@ -49,7 +49,7 @@ module.exports = {
           {from:'src/',to:'./'},
           {from:'src/warrior',to:'./warrior'},
           {from:'src/head',to:'./head'},
-          {from:'src/castle',to:'./head'}
+          {from:'src/castle',to:'./castle'}
       ])
   ]
 };

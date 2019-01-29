@@ -31,20 +31,15 @@ AFRAME.registerComponent('score-counter', {
             default: 0
         },
     },
-
     init: function () {
-
-
     },
-    tick: function (time, timeDelta) {
+    tick: function (time) {
+        // let scoreBoard = document.querySelector('#score');
+        var el = this.el;
+        time = time/1000;
 
-        let scoreBoard = document.querySelector('#score');
-        scoreBoard.setAttribute('text', 'text: '+ d.toLocaleString("ru", options) + '; font: Droid Sans Mono; size: .77;');
-
-
-
-
-    }
+        el.setAttribute("value", "Time:"+ Math.floor( time ));
+    },
 });
 
 AFRAME.registerComponent('link-click',{
@@ -102,14 +97,8 @@ AFRAME.registerComponent('main-ui', {
         var tiles = document.querySelectorAll('.tile')
 
         viewButton.addEventListener('click', function (e) {
-            // Tell the camera to start its animation forward
+
             mainCamera.emit('viewDetail')
-
-
-
-            // Wait till the last millisecond to swap the background
-            // and make it brighter.
-            // Finally hide the tiles.
             setTimeout(function()
             {
                 mainBg.setAttribute('material', 'src', '#detail-bg')
@@ -117,12 +106,12 @@ AFRAME.registerComponent('main-ui', {
 
                 mainBg.setAttribute('material', 'color', '#fff');
 
-                let link = document.querySelector('a-link')
+                let link = document.getElementById('zacatek');
+                console.log(link);
                 link.addEventListener('click', function (evt) {
                     window.location.pathname = "./vyber_postav.html/";
-                })
-                // hideTiles(
-                hideTiles();
+                });
+               hideTiles();
 
 
             }, 999)

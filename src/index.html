@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Game</title>
     <script src="index.js" type="text/javascript">
-
     </script>
     <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
 
@@ -13,10 +12,10 @@
 <a-scene main-ui>
 <a-assets>
     <img id="start-bg" src="./castle/background.jpg">
-    <img id="detail-bg" src="./castle/background.jpg">
-    <img id="left-tile-image" src="https://cdn.glitch.com/5da0d073-5eaf-4724-9a37-9aeed88ba735%2Famy-hanley-97667.jpg?1504739794283">
+    <img id="detail-bg" src="./castle/background1.jpg">
+    <video id="video" src="https://ucarecdn.com/bcece0a8-86ce-460e-856b-40dac4875f15/" preload="auto">
     <img id="center-tile-image" src="https://cdn.glitch.com/5da0d073-5eaf-4724-9a37-9aeed88ba735%2Fferdinand-stohr-140923.jpg?1504739794393">
-    <img id="right-tile-image" src="https://cdn.glitch.com/5da0d073-5eaf-4724-9a37-9aeed88ba735%2Fjon-flobrant-155200.jpg?1504739794383">
+    <img id="right-tile-image" src="./castle/aframe-picture.png">
     <a-mixin id="overlay-fade-in" animation="property: opacity; dir: normal; dur: 500; easing: easeOutQuad; loop: false; from:0; to: .75; startEvents: clickDown;"></a-mixin>
 </a-assets>
 
@@ -31,17 +30,15 @@ startEvents: viewDetail;">
 <a-sphere id="main-bg" radius="100" position="0 0 0" rotation="0 90 0" src="#start-bg" color="#333333" material="side: double;">
 </a-sphere>
 
-    <a-image
-            id="left-tile"
-            class="tile"
+    <a-video
+            id="video"
             position="-4.5 1 -8"
-            src="#left-tile-image"
+            src="#video"
             width="4"
             height="3"
-            opacity="0"
-            animation="property: opacity; dir: normal; dur: 1500;
-                   easing: easeOutQuad; loop: false; from:0; to: 1; delay: 1000">
-    </a-image>
+            controls
+           >
+    </a-video>
 
     <a-plane propagate="events:clickDown" id="center-tile" class="clickable" position="0 1 -8" width="4" height="3" opacity="0"
              animation="property: scale; dir: normal; dur: 750; easing: easeOutElastic; loop: false; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: click;">
@@ -57,21 +54,21 @@ startEvents: viewDetail;">
                 animation="property: opacity; dir: normal; dur: 1500;
                            easing: easeOutQuad; loop: false; from:0; to: 1; delay: 1250;">
 
-            <a-link href="./vyber_postav.html" title="My Homepage"  position ="0 -0.8 -1.4" image="#start-bg"></a-link>
+            <a-link id="zacatek" href="./vyber_postav.html" title="Start"  position ="0 -0.5 -1.5" image="#start-bg"></a-link>
 
 
 
         </a-image>
-        <a-link href="./vyber_postav.html" title="My Homepage" image="#start-bg"></a-link>
+        <a-link href="./vyber_postav.html" title="Vstoupit dal " image="#start-bg" position ="0 0.2 0"></a-link>
 
         <a-plane id="center-tile-overlay" width="4" height="3" position="0 0 0.01" color="#000" opacity="0"
                  mixin="overlay-fade-in"></a-plane>
-        <a-text id="center-tile-text" position="0 .25 .02" align="center" line-height="64" opacity="0" value="Kumamoto City\nJapan"
+        <a-text id="center-tile-text" position="0 .25 .02" align="center" line-height="64" opacity="0" value="Zacit novou \n hru"
                 mixin="overlay-fade-in"></a-text>
 
         <a-plane id="center-tile-cta" width="2" height=".5" position="0 -.75 .01" color="#000" opacity="0"
                  mixin="overlay-fade-in">
-            <a-text id="center-tile-cta-text" position="0 0 .02" align="center" line-height="64" opacity="0" value="View"
+            <a-text id="center-tile-cta-text" position="0 0 .02" align="center" line-height="64" opacity="0" value="Spustit"
                     mixin="overlay-fade-in"></a-text>
         </a-plane>
     </a-plane>
