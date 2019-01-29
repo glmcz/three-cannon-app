@@ -2,38 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
     <title>Game</title>
+    <script src="index.js" type="text/javascript">
+
+    </script>
+    <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
 
 </head>
 <body>
-<a-scene>
-    <script src="index.js" type="text/javascript"></script>
+<a-scene main-ui>
+<a-assets>
+    <img id="start-bg" src="./castle/background.jpg">
+    <img id="detail-bg" src="./castle/background.jpg">
+    <img id="left-tile-image" src="https://cdn.glitch.com/5da0d073-5eaf-4724-9a37-9aeed88ba735%2Famy-hanley-97667.jpg?1504739794283">
+    <img id="center-tile-image" src="https://cdn.glitch.com/5da0d073-5eaf-4724-9a37-9aeed88ba735%2Fferdinand-stohr-140923.jpg?1504739794393">
+    <img id="right-tile-image" src="https://cdn.glitch.com/5da0d073-5eaf-4724-9a37-9aeed88ba735%2Fjon-flobrant-155200.jpg?1504739794383">
+    <a-mixin id="overlay-fade-in" animation="property: opacity; dir: normal; dur: 500; easing: easeOutQuad; loop: false; from:0; to: .75; startEvents: clickDown;"></a-mixin>
+</a-assets>
 
-    <a-assets>
-        <a-asset-item id="scene" src="scene.gltf"></a-asset-item>
-    </a-assets>
-    <!-- Particle system uses 'default' preset, setting custom colors. -->
-    <a-entity position="0 2 1" gltf-model="#scene"
-              scale="0.1 0.1 0.1">
-        <a-animation attribute="rotation" dur="10000" fill="forwards"
-                     to="0 360 0" repeat="indefinite">
-        </a-animation>
+
+
+    <a-entity id="main-camera" camera look-controls
+              animation="property: position; dir: normal; dur: 1000; easing: easeInOutQuad; loop: false; from: 0 0 0; to: 0 0 -8;
+startEvents: viewDetail;">
+        <a-entity cursor="rayOrigin: mouse;" raycaster="objects: .clickable"></a-entity>
     </a-entity>
-    <a-entity gltf-model="#scene" scale="0.01 0.01 0.01"></a-entity>
-    <a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-    <a-box id="box" position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1"  color="#4CC3D9"></a-box>
-    <a-cylinder position1 id="cylinder" position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-    <a-plane code rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
 
-    <a-sky color="#000000"></a-sky>
+<a-sphere id="main-bg" radius="100" position="0 0 0" rotation="0 90 0" src="#start-bg" color="#333333" material="side: double;">
+</a-sphere>
 
-    <a-entity position="0 2 5" >
-        <a-camera>
-            <a-cursor>Tady</a-cursor>
-        </a-camera>
-    </a-entity>
-    <a-sky color="grey"></a-sky>
+    <a-image
+            id="left-tile"
+            class="tile"
+            position="-4.5 1 -8"
+            src="#left-tile-image"
+            width="4"
+            height="3"
+            opacity="0"
+            animation="property: opacity; dir: normal; dur: 1500;
+                   easing: easeOutQuad; loop: false; from:0; to: 1; delay: 1000">
+    </a-image>
+
+    <a-plane propagate="events:clickDown" id="center-tile" class="clickable" position="0 1 -8" width="4" height="3" opacity="0"
+             animation="property: scale; dir: normal; dur: 750; easing: easeOutElastic; loop: false; from: 1 1 1; to: 1.5 1.5 1.5; startEvents: click;">
+
+        <a-image
+                id="center-tile-image-entity"
+                class="tile"
+                position="0 0 0"
+                src="#detail-bg"
+                width="4"
+                height="3"
+                opacity="0"
+                animation="property: opacity; dir: normal; dur: 1500;
+                           easing: easeOutQuad; loop: false; from:0; to: 1; delay: 1250;">
+
+            <a-link href="./vyber_postav.html" title="My Homepage"  position ="0 -0.8 -1.4" image="#start-bg"></a-link>
+
+
+
+        </a-image>
+        <a-link href="./vyber_postav.html" title="My Homepage" image="#start-bg"></a-link>
+
+        <a-plane id="center-tile-overlay" width="4" height="3" position="0 0 0.01" color="#000" opacity="0"
+                 mixin="overlay-fade-in"></a-plane>
+        <a-text id="center-tile-text" position="0 .25 .02" align="center" line-height="64" opacity="0" value="Kumamoto City\nJapan"
+                mixin="overlay-fade-in"></a-text>
+
+        <a-plane id="center-tile-cta" width="2" height=".5" position="0 -.75 .01" color="#000" opacity="0"
+                 mixin="overlay-fade-in">
+            <a-text id="center-tile-cta-text" position="0 0 .02" align="center" line-height="64" opacity="0" value="View"
+                    mixin="overlay-fade-in"></a-text>
+        </a-plane>
+    </a-plane>
+
+    <a-image
+            id="right-tile"
+            class="tile"
+            position="4.5 1 -8"
+            src="#right-tile-image"
+            width="4"
+            height="3"
+            opacity="0"
+            animation="property: opacity; dir: normal; dur: 1500;
+                   easing: easeOutQuad; loop: false; from:0; to: 1; delay: 1500;"></a-image>
+
+
 </a-scene>
+
 </body>
+
 </html>

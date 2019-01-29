@@ -1,7 +1,7 @@
 var path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   stats: {
     colors: true
@@ -46,7 +46,10 @@ module.exports = {
           filename: 'index.html'
       }),
       new CopyWebpackPlugin([
-          {from:'src/',to:''}
+          {from:'src/',to:'./'},
+          {from:'src/warrior',to:'./warrior'},
+          {from:'src/head',to:'./head'},
+          {from:'src/castle',to:'./head'}
       ])
   ]
 };
